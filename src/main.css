@@ -1,0 +1,42 @@
+.mySelect {
+    float: left;
+    width: 70%;
+    position: relative;
+    left: 70px;
+}
+
+.myButton {
+    color: black;
+    margin-left: 5px;
+}
+
+#visBtn {
+    position: relative;
+    left: 70px;
+}
+
+#stopSortBtn {
+    position: relative;
+    left: 14%;
+    margin-right: 5px;
+}
+
+.topBar {
+    position: relative;
+}
+
+.myForm {
+    position: relative;
+    left: 60px;
+}
+
+#renderDiv {
+    margin-top: 20%;
+    margin-bottom: 0%;
+}
+
+#renderWrapper {
+    width: 100%;
+    height: 100%;
+
+}
