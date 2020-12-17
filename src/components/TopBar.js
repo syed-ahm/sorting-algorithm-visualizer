@@ -16,12 +16,17 @@ class TopBar extends React.Component {
     }
 
     // runs corresponding sorting algorithm from App.js
+
+
     algoCheck = () => {
+        let data = [...this.props.data];
         switch (this.myRef.current.value) {
             case "1":
                 this.props.bubbleSort();
                 break;
-                
+            case "2":
+                this.props.quickSort(data, 0, data.length - 1);
+                break;
             default:
                 break;
         }
@@ -38,8 +43,7 @@ class TopBar extends React.Component {
                     <select ref = {this.myRef} className = "custom-select mySelect">
                         <option value = "0">Choose an Algorithm</option>
                         <option value = "1">Bubble Sort</option>
-                        <option value = "2">Merge Sort</option>
-                        <option value = "3">Quick Sort</option>
+                        <option value = "2">Quick Sort</option>
                     </select>
                     <Button onClick = {this.algoCheck} type="submit" className = "btn-success myButton" id="visBtn">Visualize!</Button>
                 </form>

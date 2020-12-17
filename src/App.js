@@ -43,32 +43,14 @@ class App extends React.Component {
         };
     });
 
-
-
     this.swap = this.swap.bind(this);
     this.bubbleSort = this.bubbleSort.bind(this);
-  }
-
-  
-  async sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    this.quickSort = this.quickSort.bind(this);
   }
 
 
-  // BUBBLE SORT FUNCTIONS //
+  // BUBBLE SORT //
 
-  async swap(array, a, b) {
-    await this.sleep(1);
-    let tempVal;
-
-    tempVal = array[a];
-    array[a] = array[b];
-    array[b] = tempVal;
-
-    this.setState({
-      nodes: array
-    });
-  }
 
   async bubbleSort() {
     this.continueSorting = true;
@@ -91,12 +73,72 @@ class App extends React.Component {
     }
   }
 
+
+
+
+  // QUICK SORT //
+
+  async quickSort(data, start, end) {
+
+    if (start >= end) {
+      return data;
+    }
+
+    let index = await this.partition(data, start, end);
+
+    this.quickSort(data, start, index-1);
+    this.quickSort(data, index + 1, end);
+
+  }
+
+  async partition(data, start, end) {
+    let pivotIndex = start;
+    let pivotValue = data[end];
+
+    for (let i = start; i < end; i++) {
+      if (data[i] < pivotValue) {
+        this.swap(data, i, pivotIndex);
+        pivotIndex++;
+      }
+    }
+
+    await this.swap(data, pivotIndex, end);
+
+    return pivotIndex;
+  }
+
+
+
+
+
+  // ULTILITY FUNCTIONS //
+
   // stops sorting function
   stopSort = () => {
     this.continueSorting = false;
   }
 
-  // testing function
+
+  // swaps 
+  async swap(array, a, b) {
+    await this.sleep(1);
+    let tempVal;
+
+    tempVal = array[a];
+    array[a] = array[b];
+    array[b] = tempVal;
+
+    this.setState({
+      nodes: array
+    });
+  }
+
+  // pauses algoirthm in order to show visualization
+  async sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  // testing array equality
   equal(array1, array2) {
     if (array1.length !== array2.length) return false;
     for (let i = 0; i < array1.length; i++) {
@@ -109,6 +151,7 @@ class App extends React.Component {
     console.log(array2);
     return true;
 
+    // create javascript sorted array
     // let data1 = this.state.nodes.slice().sort( (a, b) => a - b);
   } 
 
@@ -118,7 +161,7 @@ class App extends React.Component {
 
     return (
       <React.Fragment>
-        <TopBar algorithm = {this.state.algorithm} updateParentAlgo = {this.updateParentAlgo} regen = {this.data.setup} bubbleSort = {this.bubbleSort} stopSort = {this.stopSort}/>
+        <TopBar algorithm = {this.state.algorithm} updateParentAlgo = {this.updateParentAlgo} regen = {this.data.setup} bubbleSort = {this.bubbleSort} quickSort = {this.quickSort} stopSort = {this.stopSort} data = {this.state.nodes}/>
         <div className = "d-flex justify-content-center" id="renderWrapper">
           <div id="renderDiv" ref={this.renderRef}></div>
         </div>
