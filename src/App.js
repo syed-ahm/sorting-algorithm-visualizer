@@ -44,36 +44,8 @@ class App extends React.Component {
     });
 
     this.swap = this.swap.bind(this);
-    this.bubbleSort = this.bubbleSort.bind(this);
     this.quickSort = this.quickSort.bind(this);
   }
-
-
-  // BUBBLE SORT //
-
-
-  async bubbleSort() {
-    this.continueSorting = true;
-    let data = [...this.state.nodes];
-    let dataLength = data.length - 1;
-    let isSorted = false;
-  
-    while(!isSorted) {
-      isSorted = true;
-
-      while (this.continueSorting) {
-        for (let i = 0; i < dataLength; i++) {
-          if (data[i] > data[i + 1]) {
-            await this.swap(data, i, i + 1);
-            isSorted = false;
-          }
-        }
-      }
-      dataLength--; 
-    }
-  }
-
-
 
 
   // QUICK SORT //
@@ -112,12 +84,6 @@ class App extends React.Component {
 
 
   // ULTILITY FUNCTIONS //
-
-  // stops sorting function
-  stopSort = () => {
-    this.continueSorting = false;
-  }
-
 
   // swaps 
   async swap(array, a, b) {
@@ -161,7 +127,7 @@ class App extends React.Component {
 
     return (
       <React.Fragment>
-        <TopBar algorithm = {this.state.algorithm} updateParentAlgo = {this.updateParentAlgo} regen = {this.data.setup} bubbleSort = {this.bubbleSort} quickSort = {this.quickSort} stopSort = {this.stopSort} data = {this.state.nodes}/>
+        <TopBar algorithm = {this.state.algorithm} updateParentAlgo = {this.updateParentAlgo} regen = {this.data.setup} quickSort = {this.quickSort} data = {this.state.nodes}/>
         <div className = "d-flex justify-content-center" id="renderWrapper">
           <div id="renderDiv" ref={this.renderRef}></div>
         </div>

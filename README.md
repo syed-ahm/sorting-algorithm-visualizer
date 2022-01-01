@@ -1,12 +1,10 @@
 ## Sorting Visualizer
-The live version, found at: https://syed-ahm.github.io/sorting-algorithm-visualizer/ visualizes two sorting algorithms, quick sort and bubble sort. 
+The live version, found at: https://syed-ahm.github.io/sorting-algorithm-visualizer/ visualizes the quick sort algorithm. 
 
 ## INSTRUCTIONS:
-* Select a sorting algorithm from the dropdown
-* Press the green "Visualize!" button to visualize the algorithm
+* Press the green "Visualize!" button to visualize the quick sort.
 
 ## NOTES: 
-* "Stop Sorting" stops stoping after the current iteration is complete.
 * "Regenerate Array" generates a new random array.
 
 ## Built Using:
